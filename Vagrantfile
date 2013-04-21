@@ -61,8 +61,11 @@ Vagrant.configure("2") do |config|
     chef.add_recipe "apt"
     chef.add_recipe "build-essential"
     chef.add_recipe "networking_basic"
-    chef.add_recipe "nginx::passenger"
+    chef.add_recipe "rbenv"
+    chef.add_recipe "rbenv::ruby_build"
+    chef.add_recipe "sugarpond_rubies"
     chef.add_recipe "nginx"
+    chef.add_recipe "nginx::passenger"
     chef.add_recipe "mysql"
     chef.add_recipe "mysql::server"
     chef.add_recipe "postgresql"
@@ -74,11 +77,14 @@ Vagrant.configure("2") do |config|
       :nginx => {
         :install_method => "source",
         :gzip => "on",
+        :init_style => "upstart",
         :source => {
           :modules => ['http_ssl_module', 'passenger']
         },
         :passenger => {
-          :version => "4.0.0.rc6"
+          :version => "4.0.0.rc6",
+          :ruby => "/opt/rbenv/versions/1.9.3-p392/bin/ruby",
+          :root => "/opt/rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/passenger-4.0.0.rc6"
         }
       },
       :postgresql => {
