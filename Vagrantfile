@@ -54,51 +54,40 @@ Vagrant.configure("2") do |config|
   # path, and data_bags path (all relative to this Vagrantfile), and adding
   # some recipes and/or roles.
   #
-  config.vm.provision :chef_solo do |chef|
-#    chef.cookbooks_path = "../my-recipes/cookbooks"
-#    chef.roles_path = "../my-recipes/roles"
-#    chef.data_bags_path = "../my-recipes/data_bags"
-    chef.add_recipe "apt"
-    chef.add_recipe "build-essential"
-    chef.add_recipe "networking_basic"
-    chef.add_recipe "rbenv"
-    chef.add_recipe "rbenv::ruby_build"
-    chef.add_recipe "sugarpond_rubies"
-    chef.add_recipe "nginx"
-    chef.add_recipe "nginx::passenger"
-    chef.add_recipe "mysql"
-    chef.add_recipe "mysql::server"
-    chef.add_recipe "postgresql"
-    chef.add_recipe "postgresql::server"
-#    chef.add_role "web"
-  
-    # You may also specify custom JSON attributes:
-    chef.json = { 
-      :nginx => {
-        :install_method => "source",
-        :gzip => "on",
-        :init_style => "upstart",
-        :source => {
-          :modules => ['http_ssl_module', 'passenger']
-        },
-        :passenger => {
-          :version => "4.0.0.rc6",
-          :ruby => "/opt/rbenv/versions/1.9.3-p392/bin/ruby",
-          :root => "/opt/rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/passenger-4.0.0.rc6"
-        }
-      },
-      :postgresql => {
-        :password => {
-          :postgres => ""
-        }
-      },
-      :mysql => {
-        :server_debian_password => "debian",
-        :server_root_password => "",
-        :server_repl_password => "repl"
-      }
-    }
-  end
+#   config.vm.provision :chef_solo do |chef|
+# #    chef.cookbooks_path = "../my-recipes/cookbooks"
+# #    chef.roles_path = "../my-recipes/roles"
+# #    chef.data_bags_path = "../my-recipes/data_bags"
+
+# #    chef.add_role "web"
+#   
+#     # You may also specify custom JSON attributes:
+#     chef.json = { 
+#       :nginx => {
+#         :install_method => "source",
+#         :gzip => "on",
+#         :init_style => "upstart",
+#         :source => {
+#           :modules => ['http_ssl_module', 'passenger']
+#         },
+#         :passenger => {
+#           :version => "4.0.0.rc6",
+#           :ruby => "/opt/rbenv/versions/1.9.3-p392/bin/ruby",
+#           :root => "/opt/rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/passenger-4.0.0.rc6"
+#         }
+#       },
+#       :postgresql => {
+#         :password => {
+#           :postgres => ""
+#         }
+#       },
+#       :mysql => {
+#         :server_debian_password => "debian",
+#         :server_root_password => "",
+#         :server_repl_password => "repl"
+#       }
+#     }
+#   end
 
   # Enable provisioning with chef server, specifying the chef server URL,
   # and the path to the validation key (relative to this Vagrantfile).
@@ -110,10 +99,15 @@ Vagrant.configure("2") do |config|
   # HTTP instead of HTTPS depending on your configuration. Also change the
   # validation key to validation.pem.
   #
-  # config.vm.provision :chef_client do |chef|
-  #   chef.chef_server_url = "https://api.opscode.com/organizations/ORGNAME"
-  #   chef.validation_key_path = "ORGNAME-validator.pem"
-  # end
+  config.vm.provision :chef_client do |chef|
+    chef.chef_server_url = "https://api.opscode.com/organizations/sugarpond"
+    chef.validation_key_path = ".chef/sugarpond-validator.pem"
+    chef.validation_client_name = "sugarpond-validator"
+
+    chef.add_role "mysql_server"
+    chef.add_role "postgresql_server"
+    chef.add_role "app_server"
+  end
   #
   # If you're using the Opscode platform, your validator client is
   # ORGNAME-validator, replacing ORGNAME with your organization name.
@@ -121,5 +115,5 @@ Vagrant.configure("2") do |config|
   # If you have your own Chef Server, the default validation client name is
   # chef-validator, unless you changed the configuration.
   #
-  #   chef.validation_client_name = "ORGNAME-validator"
+  #chef.validation_client_name = "./chef/sugarpond-validator"
 end
