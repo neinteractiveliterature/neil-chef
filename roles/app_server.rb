@@ -7,12 +7,11 @@ run_list(
   "recipe[rbenv::ruby_build]",
   "recipe[sugarpond_rubies]",
   "recipe[nginx]",
-  "recipe[nginx::passenger]",
   "recipe[mysql]",
   "recipe[postgresql]"
 )
 
-default_attributes "nginx" => {
+override_attributes "nginx" => {
   "install_method" => "source",
   "gzip" => "on",
   "init_style" => "upstart",
