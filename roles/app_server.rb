@@ -8,19 +8,33 @@ run_list(
   "recipe[sugarpond_rubies]",
   "recipe[nginx]",
   "recipe[mysql]",
-  "recipe[postgresql]"
+  "recipe[postgresql]",
+  "recipe[postfix]",
+  "recipe[postfix::sasl_auth]",
+  "recipe[sugarpond_logrotate]"
 )
 
-override_attributes "nginx" => {
-  "install_method" => "source",
-  "gzip" => "on",
-  "init_style" => "upstart",
-  "source" => {
-    "modules" => ["http_ssl_module", "passenger"]
-  },
-  "passenger" => {
-    "version" => "4.0.0.rc6",
-    "ruby" => "/opt/rbenv/versions/1.9.3-p392/bin/ruby",
-    "root" => "/opt/rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/passenger-4.0.0.rc6"
+override_attributes(
+  "nginx" => {
+    "version" => "1.4.1",
+    "install_method" => "source",
+    "gzip" => "on",
+    "init_style" => "upstart",
+    "source" => {
+      "modules" => ["http_ssl_module", "passenger"]
+    },
+    "passenger" => {
+      "version" => "4.0.5",
+      "ruby" => "/opt/rbenv/versions/1.9.3-p392/bin/ruby",
+      "root" => "/opt/rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/passenger-4.0.5"
+    }
+  }, 
+  "postfix" => {
+    "smtp_sasl_auth_enable" => "yes",
+    "smtp_sasl_security_options" => "noanonymous",
+    "smtp_sasl_user_name" => "natbudin@gmail.com",
+    "smtp_tls_cafile" => "",
+    "relayhost" => "[smtp.sendgrid.net]:587",
+    "smtp_use_tls" => "yes"
   }
-}
+)

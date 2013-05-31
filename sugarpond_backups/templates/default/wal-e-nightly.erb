@@ -1,0 +1,11 @@
+#!/bin/bash
+
+KEEP_BACKUPS=3
+
+sudo -u postgres -H envdir /etc/wal-e.d/env /usr/local/bin/wal-e backup-push <%= node["postgresql"]["config"]["data_directory"] %>
+LAST_BACKUP=$(sudo -u postgres -H envdir /etc/wal-e.d/env /usr/local/bin/wal-e backup-list | cut -f 1 |grep -v ^name |sort -r | head -n $KEEP_BACKUPS |tail -n 1)
+
+if [ $LAST_BACKUP ]
+then
+  sudo -u postgres -H envdir /etc/wal-e.d/env /usr/local/bin/wal-e delete --confirm before "$LAST_BACKUP"
+fi

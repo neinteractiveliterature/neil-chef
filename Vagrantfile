@@ -7,11 +7,24 @@ Vagrant.configure("2") do |config|
   # please see the online documentation at vagrantup.com.
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "precise64"
+  config.vm.box = "quantal64"
+  #config.vm.box = "precise64"
 
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
-  config.vm.box_url = "http://files.vagrantup.com/precise64.box"
+  #config.vm.box_url = "http://files.vagrantup.com/precise64.box"
+  config.vm.box_url = "http://cloud-images.ubuntu.com/quantal/current/quantal-server-cloudimg-vagrant-amd64-disk1.box"
+  
+  config.vm.provider "virtualbox" do |v|
+    v.customize ["modifyvm", :id, "--memory", 1024]
+  end
+
+  # Every Vagrant virtual environment requires a box to build off of.
+  #config.vm.box = "precise64-chef10.26.0"
+
+  # The url from where the 'config.vm.box' box will be fetched if it
+  # doesn't already exist on the user's system.
+  #config.vm.box_url = "http://nbudin.s3.amazonaws.com/precise64-chef10.26.0.box"
 
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
@@ -49,71 +62,60 @@ Vagrant.configure("2") do |config|
   # information on available options.
 
   config.berkshelf.enabled = true
+  config.omnibus.chef_version = :latest
 
   # Enable provisioning with chef solo, specifying a cookbooks path, roles
   # path, and data_bags path (all relative to this Vagrantfile), and adding
   # some recipes and/or roles.
   #
-#   config.vm.provision :chef_solo do |chef|
-# #    chef.cookbooks_path = "../my-recipes/cookbooks"
-# #    chef.roles_path = "../my-recipes/roles"
-# #    chef.data_bags_path = "../my-recipes/data_bags"
+  # config.vm.provision :chef_solo do |chef|
+  #   chef.roles_path = "roles"
+  #   chef.data_bags_path = "data_bags"
+  #   chef.encrypted_data_bag_secret_key_path = "encrypted_data_bag_secret"
+  #   
+  #   chef.json = { 
+  #     :nginx => {
+  #       :version => "1.4.1",
+  #       :install_method => "source",
+  #       :gzip => "on",
+  #       :init_style => "upstart",
+  #       :source => {
+  #         :modules => ['http_ssl_module', 'passenger']
+  #       },
+  #       :passenger => {
+  #         :version => "4.0.2",
+  #         :ruby => "/opt/rbenv/versions/1.9.3-p392/bin/ruby",
+  #         :root => "/opt/rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/passenger-4.0.0.rc6"
+  #       }
+  #     },
+  #     :postgresql => {
+  #       :password => {
+  #         :postgres => ""
+  #       }
+  #     },
+  #     :mysql => {
+  #       :server_debian_password => "debian",
+  #       :server_root_password => "",
+  #       :server_repl_password => "repl"
+  #     },
+  #     :duplicity => {
+  #       :s3_bucket => "nbudin"
+  #     }
+  #   }
+  # 
+  #   chef.add_role "mysql_server"
+  #   chef.add_role "postgresql_server"
+  #   chef.add_role "app_server"
+  # end
 
-# #    chef.add_role "web"
-#   
-#     # You may also specify custom JSON attributes:
-#     chef.json = { 
-#       :nginx => {
-#         :install_method => "source",
-#         :gzip => "on",
-#         :init_style => "upstart",
-#         :source => {
-#           :modules => ['http_ssl_module', 'passenger']
-#         },
-#         :passenger => {
-#           :version => "4.0.0.rc6",
-#           :ruby => "/opt/rbenv/versions/1.9.3-p392/bin/ruby",
-#           :root => "/opt/rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/passenger-4.0.0.rc6"
-#         }
-#       },
-#       :postgresql => {
-#         :password => {
-#           :postgres => ""
-#         }
-#       },
-#       :mysql => {
-#         :server_debian_password => "debian",
-#         :server_root_password => "",
-#         :server_repl_password => "repl"
-#       }
-#     }
-#   end
-
-  # Enable provisioning with chef server, specifying the chef server URL,
-  # and the path to the validation key (relative to this Vagrantfile).
-  #
-  # The Opscode Platform uses HTTPS. Substitute your organization for
-  # ORGNAME in the URL and validation key.
-  #
-  # If you have your own Chef Server, use the appropriate URL, which may be
-  # HTTP instead of HTTPS depending on your configuration. Also change the
-  # validation key to validation.pem.
-  #
   config.vm.provision :chef_client do |chef|
     chef.chef_server_url = "https://api.opscode.com/organizations/sugarpond"
-    chef.validation_key_path = ".chef/sugarpond-validator.pem"
+    chef.validation_key_path = "#{ENV["HOME"]}/.chef/sugarpond-validator.pem"
     chef.validation_client_name = "sugarpond-validator"
+    chef.encrypted_data_bag_secret_key_path = "encrypted_data_bag_secret"
 
     chef.add_role "mysql_server"
     chef.add_role "postgresql_server"
     chef.add_role "app_server"
   end
-  #
-  # If you're using the Opscode platform, your validator client is
-  # ORGNAME-validator, replacing ORGNAME with your organization name.
-  #
-  # If you have your own Chef Server, the default validation client name is
-  # chef-validator, unless you changed the configuration.
-  #
-  #chef.validation_client_name = "./chef/sugarpond-validator"
 end
