@@ -1,0 +1,19 @@
+server {
+  listen 80;
+  server_name <%= @server_names.join(", ") %>;
+  return 301 https://$server_name$request_uri;
+}
+
+<% @server_names.each do |server_name| %>
+server {
+  listen 443 ssl;
+  
+  server_name <%= server_name %>;
+  root    <%= @root %>;
+  passenger_enabled on;
+  
+  ssl on;
+  ssl_certificate <%= node['ssl']['certs_dir'] %>/<%= server_name %>.combined.crt;
+  ssl_certificate_key <%= node['ssl']['keys_dir'] %>/<%= server_name %>.key;
+}
+<% end %>

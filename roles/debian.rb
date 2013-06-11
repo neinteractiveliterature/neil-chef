@@ -8,7 +8,8 @@ run_list(
   "recipe[backupninja]",
   "recipe[sugarpond_backups]",
   "recipe[unattended-upgrades]",
-  "recipe[ssl]"
+  "recipe[ssl]",
+  "recipe[user::data_bag]"
 )
 
 override_attributes( 

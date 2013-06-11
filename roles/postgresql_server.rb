@@ -10,9 +10,17 @@ run_list(
 
 override_attributes(
   "postgresql" => {
+    "config" => {
+      "listen_addresses" => "0.0.0.0"
+    },
     "password" => {
       "postgres" => ""
-    }
+    },
+    "pg_hba" => [
+      {
+        :type => "hostssl", :db => 'all', :user => 'all', :addr => "0.0.0.0/0", :method => 'md5'
+      }
+    ]
   },
   "sugarpond_backups" => {
     "postgresql" => {

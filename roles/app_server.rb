@@ -8,6 +8,7 @@ run_list(
   "recipe[sugarpond_rubies]",
   "recipe[nginx]",
   "recipe[mysql]",
+  "recipe[mysql::ruby]",
   "recipe[postgresql]",
   "recipe[postfix]",
   "recipe[postfix::sasl_auth]",
@@ -36,5 +37,6 @@ override_attributes(
     "smtp_tls_cafile" => "",
     "relayhost" => "[smtp.sendgrid.net]:587",
     "smtp_use_tls" => "yes"
-  }
+  },
+  "users" => ['www-data', 'deploy']
 )
