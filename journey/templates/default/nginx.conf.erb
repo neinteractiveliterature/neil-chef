@@ -1,0 +1,25 @@
+server {
+  listen 80;
+  server_name <%= @server_names.join(" ") %>;
+  return 301 https://<%= @secure_server_name %>$request_uri;
+}
+
+server {
+  listen 443 ssl;
+  server_name <%= @secure_server_name %>;
+
+  <% if @heroku_proxy %>
+  location / {
+    proxy_pass <%= @heroku_proxy %>;
+    proxy_set_header Host $host;
+  }
+  <% else %>
+  root    <%= @root %>;
+  passenger_enabled on;
+  passenger_ruby <%= @passenger_ruby %>;
+  <% end %>
+  
+  ssl on;
+  ssl_certificate <%= node['ssl']['certs_dir'] %>/<%= @secure_server_name %>.combined.crt;
+  ssl_certificate_key <%= node['ssl']['keys_dir'] %>/<%= @secure_server_name %>.key;
+}

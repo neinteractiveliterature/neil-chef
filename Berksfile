@@ -4,7 +4,7 @@ site :opscode
 cookbook 'apt'
 cookbook 'build-essential'
 cookbook 'networking_basic'
-cookbook 'rbenv'
+cookbook 'rbenv', ">= 1.5.0"
 cookbook 'nginx', github: "brandonmartin/nginx", branch: "COOK-2622"
 cookbook 'mysql'
 cookbook 'postgresql'
@@ -29,4 +29,5 @@ end
 group :apps do
   cookbook 'sugarpond_errbit', path: "./sugarpond_errbit"
   cookbook 'illyan', path: "./illyan"
+  cookbook 'journey', path: "./journey"
 end
