@@ -35,6 +35,7 @@ app_name = "journey"
 app_path = "/var/www/#{app_name}"
 server_names = %w(journeysurveys.com www.journeysurveys.com journeysurveys.net www.journeysurveys.net journey.popper.sugarpond.net secure.journeysurveys.com secure.journeysurveys.net)
 secure_server_name = "secure.journeysurveys.com"
+ssl_redirect_servers = ["secure.journeysurveys.net"]
 
 directory app_path do
   action :create
@@ -98,8 +99,9 @@ template "#{node['nginx']['dir']}/sites-available/#{app_name}" do
       :root => "#{app_path}/current/public",
       :server_names => server_names,
       :secure_server_name => secure_server_name,
+      :ssl_redirect_servers => ssl_redirect_servers,
       :passenger_ruby => "#{node['rbenv']['root']}/versions/#{ruby_ver}/bin/ruby",
-#      :heroku_proxy => "https://chiba-4997.herokussl.com"
+      :heroku_proxy => "https://chiba-4997.herokussl.com"
     }
   )
   notifies :restart, resources(:service => "nginx")

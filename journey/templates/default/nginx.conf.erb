@@ -23,3 +23,16 @@ server {
   ssl_certificate <%= node['ssl']['certs_dir'] %>/<%= @secure_server_name %>.combined.crt;
   ssl_certificate_key <%= node['ssl']['keys_dir'] %>/<%= @secure_server_name %>.key;
 }
+
+<% @ssl_redirect_servers.each do |ssl_redirect_server| %>
+server {
+  listen 443;
+  server_name <%= ssl_redirect_server %>;
+
+  return 301 https://<%= @secure_server_name %>$request_uri;
+
+  ssl on;
+  ssl_certificate <%= node['ssl']['certs_dir'] %>/<%= ssl_redirect_server %>.combined.crt;
+  ssl_certificate_key <%= node['ssl']['keys_dir'] %>/<%= ssl_redirect_server %>.key;
+}
+<% end %>
