@@ -67,6 +67,13 @@ directory "#{app_path}/shared/log" do
   mode 0775
 end
 
+file "#{app_path}/shared/log/production.log" do
+  action :create
+  owner "deploy"
+  group "www-data"
+  mode 0664
+end
+
 template "#{shared_config_path}/journey.yml" do
   source "journey.yml.erb"
   variables(
@@ -100,8 +107,7 @@ template "#{node['nginx']['dir']}/sites-available/#{app_name}" do
       :server_names => server_names,
       :secure_server_name => secure_server_name,
       :ssl_redirect_servers => ssl_redirect_servers,
-      :passenger_ruby => "#{node['rbenv']['root']}/versions/#{ruby_ver}/bin/ruby",
-      :heroku_proxy => "https://chiba-4997.herokussl.com"
+      :passenger_ruby => "#{node['rbenv']['root']}/versions/#{ruby_ver}/bin/ruby"
     }
   )
   notifies :restart, resources(:service => "nginx")
