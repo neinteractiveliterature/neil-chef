@@ -13,9 +13,9 @@
       "locked_version": "1.5.0"
     },
     "nginx": {
-      "locked_version": "1.4.0",
-      "git": "git://github.com/brandonmartin/nginx.git",
-      "ref": "b9cca6d76fce934ec5c5aaf293e4162a51d24702"
+      "locked_version": "1.8.1",
+      "git": "git://github.com/opscode-cookbooks/nginx.git",
+      "ref": "bccc005adf8805dbea46b44426dea7ff6d2389d0"
     },
     "mysql": {
       "locked_version": "3.0.0"
@@ -91,12 +91,6 @@
     },
     "ohai": {
       "locked_version": "1.1.8"
-    },
-    "bluepill": {
-      "locked_version": "2.2.2"
-    },
-    "rsyslog": {
-      "locked_version": "1.5.0"
     },
     "openssl": {
       "locked_version": "1.0.2"

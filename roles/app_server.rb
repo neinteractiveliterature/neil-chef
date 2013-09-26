@@ -17,17 +17,17 @@ run_list(
 
 override_attributes(
   "nginx" => {
-    "version" => "1.4.1",
+    "version" => "1.4.2",
     "install_method" => "source",
     "gzip" => "on",
     "init_style" => "upstart",
     "source" => {
-      "modules" => ["http_ssl_module", "passenger"]
+      "modules" => ["nginx::http_ssl_module", "nginx::http_spdy_module", "nginx::passenger"]
     },
     "passenger" => {
-      "version" => "4.0.5",
+      "version" => "4.0.19",
       "ruby" => "/opt/rbenv/versions/1.9.3-p392/bin/ruby",
-      "root" => "/opt/rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/passenger-4.0.5"
+      "root" => "/opt/rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/passenger-4.0.19"
     }
   }, 
   "postfix" => {

@@ -5,7 +5,7 @@ cookbook 'apt'
 cookbook 'build-essential'
 cookbook 'networking_basic'
 cookbook 'rbenv', ">= 1.5.0"
-cookbook 'nginx', github: "brandonmartin/nginx", branch: "COOK-2622"
+cookbook 'nginx', github: "opscode-cookbooks/nginx"
 cookbook 'mysql'
 cookbook 'postgresql'
 cookbook 'chef-client'
