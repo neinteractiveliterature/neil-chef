@@ -10,7 +10,7 @@ cookbook 'mysql'
 cookbook 'postgresql'
 cookbook 'chef-client'
 cookbook 'unattended-upgrades', github: "firstbanco/chef-unattended-upgrades"
-cookbook 'ssl', github: "cap10morgan/ssl-cookbook"
+cookbook 'ssl', ">= 1.0.8"
 cookbook 'user'
 
 group :forked do

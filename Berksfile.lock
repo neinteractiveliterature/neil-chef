@@ -1,25 +1,117 @@
 {
   "sources": {
-    "journey": {
-      "path": "./journey"
-    },
-    "database": {
-      "locked_version": "1.4.0"
-    },
-    "mysql": {
-      "locked_version": "3.0.0"
-    },
-    "openssl": {
-      "locked_version": "1.0.2"
+    "apt": {
+      "locked_version": "1.9.2"
     },
     "build-essential": {
       "locked_version": "1.4.0"
     },
+    "networking_basic": {
+      "locked_version": "0.0.5"
+    },
+    "rbenv": {
+      "locked_version": "1.5.0"
+    },
+    "nginx": {
+      "locked_version": "1.4.0",
+      "git": "git://github.com/brandonmartin/nginx.git",
+      "ref": "b9cca6d76fce934ec5c5aaf293e4162a51d24702"
+    },
+    "mysql": {
+      "locked_version": "3.0.0"
+    },
     "postgresql": {
       "locked_version": "2.4.0"
     },
-    "apt": {
-      "locked_version": "1.9.2"
+    "chef-client": {
+      "locked_version": "2.2.2"
+    },
+    "unattended-upgrades": {
+      "locked_version": "1.0.0",
+      "git": "git://github.com/firstbanco/chef-unattended-upgrades.git",
+      "ref": "24cf40f5743fac8e7814e58cc8e3dde2f1ca2de9"
+    },
+    "ssl": {
+      "locked_version": "1.0.8"
+    },
+    "user": {
+      "locked_version": "0.3.0"
+    },
+    "postfix": {
+      "locked_version": "2.1.4",
+      "git": "git://github.com/nbudin/postfix.git",
+      "ref": "51dff261c90c0c32523dc74b0dd1fab928d65ccb"
+    },
+    "backupninja": {
+      "locked_version": "0.0.1",
+      "git": "git://github.com/nbudin/backupninja-cookbook.git",
+      "ref": "142f7770623058f417885b7fafe5bcb7ff3aea40"
+    },
+    "sugarpond_backups": {
+      "path": "./sugarpond_backups"
+    },
+    "sugarpond_mysql_ssl": {
+      "path": "./sugarpond_mysql_ssl"
+    },
+    "sugarpond_rubies": {
+      "path": "./sugarpond_rubies"
+    },
+    "sugarpond_logrotate": {
+      "path": "./sugarpond_logrotate"
+    },
+    "sugarpond_nginx_ssl": {
+      "path": "./sugarpond_nginx_ssl"
+    },
+    "sugarpond_errbit": {
+      "path": "./sugarpond_errbit"
+    },
+    "illyan": {
+      "path": "./illyan"
+    },
+    "journey": {
+      "path": "./journey"
+    },
+    "git": {
+      "locked_version": "2.5.0"
+    },
+    "dmg": {
+      "locked_version": "1.1.0"
+    },
+    "yum": {
+      "locked_version": "2.2.0"
+    },
+    "windows": {
+      "locked_version": "1.8.8"
+    },
+    "chef_handler": {
+      "locked_version": "1.1.4"
+    },
+    "runit": {
+      "locked_version": "1.1.2"
+    },
+    "ohai": {
+      "locked_version": "1.1.8"
+    },
+    "bluepill": {
+      "locked_version": "2.2.2"
+    },
+    "rsyslog": {
+      "locked_version": "1.5.0"
+    },
+    "openssl": {
+      "locked_version": "1.0.2"
+    },
+    "cron": {
+      "locked_version": "1.2.2"
+    },
+    "known_host": {
+      "locked_version": "0.1.3"
+    },
+    "python": {
+      "locked_version": "1.2.2"
+    },
+    "database": {
+      "locked_version": "1.4.0"
     },
     "aws": {
       "locked_version": "0.101.2"

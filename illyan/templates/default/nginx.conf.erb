@@ -15,5 +15,12 @@ server {
   ssl on;
   ssl_certificate <%= node['ssl']['certs_dir'] %>/<%= server_name %>.combined.crt;
   ssl_certificate_key <%= node['ssl']['keys_dir'] %>/<%= server_name %>.key;
+  
+  server_tokens off;
+  ssl_protocols SSLv3 TLSv1 TLSv1.1 TLSv1.2;
+  ssl_prefer_server_ciphers on;
+  ssl_session_timeout 10m;
+  ssl_ciphers TLS_ECDHE_RSA_WITH_RC4_128_SHA:TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA:TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA:TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA:TLS_DHE_RSA_WITH_AES_128_CBC_SHA:HIGH:!aNULL:!MD5;
+  ssl_session_cache shared:SSL:10m;
 }
 <% end %>
