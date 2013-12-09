@@ -2,3 +2,6 @@
 .chef
 encrypted_data_bag_secret
 data_bags
+*.crt
+*.csr
+*.key
