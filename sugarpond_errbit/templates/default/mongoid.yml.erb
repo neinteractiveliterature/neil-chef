@@ -7,27 +7,12 @@
 # `cap deploy:setup` is ran the first time. Be sure
 # to place production specific settings there
 
-defaults: &defaults
-  host: localhost
-  # slaves:
-  #   - host: slave1.local
-  #     port: 27018
-  #   - host: slave2.local
-  #     port: 27019
-
-development:
-  <<: *defaults
-  database: errbit_development
-
-test:
-  <<: *defaults
-  database: errbit_test
-
 # set these environment variables on your prod server
 production:
-  <<: *defaults
-  host: <%= @host %>
-  port: <%= @port %>
-  username: <%= @username %>
-  password: <%= @password %>
-  database: <%= @database %>
+  sessions:
+    default:
+      hosts:
+        - <%= @host %>:<%= @port %>
+      username: <%= @username %>
+      password: <%= @password %>
+      database: <%= @database %>
