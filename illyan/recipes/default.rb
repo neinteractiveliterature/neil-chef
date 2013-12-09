@@ -8,10 +8,11 @@
 #
 
 app_config = Chef::EncryptedDataBagItem.load("illyan", "config")
+ruby_ver = "1.9.3-p484"
 
 rbenv_gem 'bundler' do
   action :install
-  ruby_version "1.9.3-p392"
+  ruby_version ruby_ver
 end
 
 package "libxml2-dev" do
@@ -82,7 +83,8 @@ template "#{node['nginx']['dir']}/sites-available/#{app_name}" do
   variables(
     {
       :root => "#{app_path}/current/public",
-      :server_names => server_names      
+      :server_names => server_names,
+      :passenger_ruby => "#{node['rbenv']['root']}/versions/#{ruby_ver}/bin/ruby"
     }
   )
   notifies :restart, resources(:service => "nginx")

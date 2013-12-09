@@ -9,7 +9,14 @@ run_list(
   "recipe[sugarpond_mysql_ssl]"
 )
 
-override_attributes "mysql" => {
-  "server_root_password" => "",
-  "bind-address" => "0.0.0.0"
-}
+override_attributes(
+  "mysql" => {
+    "server_root_password" => "",
+    "bind-address" => "0.0.0.0"
+  },
+  "firewall" => {
+    "rules" => [
+      { "mysql" => { "port" => 3306 } }
+    ]
+  }
+)

@@ -12,6 +12,7 @@ server {
   server_name <%= server_name %>;
   root    <%= @root %>;
   passenger_enabled on;
+  passenger_ruby <%= @passenger_ruby %>;
   
   ssl on;
   ssl_certificate <%= node['ssl']['certs_dir'] %>/<%= server_name %>.combined.crt;

@@ -9,6 +9,7 @@ run_list(
   "recipe[sugarpond_backups]",
   "recipe[unattended-upgrades]",
   "recipe[ssl]",
+  "recipe[ufw]",
   "recipe[user::data_bag]"
 )
 
@@ -20,5 +21,11 @@ override_attributes(
   }, "unattended-upgrades" => {
     "send_email" => true,
     "email_address" => "natbudin@gmail.com"
+  }, "firewall" => {
+    "rules" => [
+      {
+        "ssh" => { "port" => 22 }
+      }
+    ]
   }
 )

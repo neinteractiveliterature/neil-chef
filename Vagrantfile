@@ -117,7 +117,9 @@ Vagrant.configure("2") do |config|
     chef.add_role "mysql_server"
     chef.add_role "postgresql_server"
     chef.add_role "app_server"
+    chef.add_role "elasticsearch_server"
     chef.add_recipe "sugarpond_errbit"
     chef.add_recipe "journey"
+    chef.add_recipe "illyan"
   end
 end

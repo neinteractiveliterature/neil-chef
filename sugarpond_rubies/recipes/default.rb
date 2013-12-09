@@ -8,9 +8,7 @@
 #
 
 #rbenv_ruby "1.8.7-p371"
-rbenv_ruby "1.9.3-p392"
 rbenv_ruby "1.9.3-p484"
-rbenv_ruby "2.0.0-p247"
 rbenv_ruby "2.0.0-p353"
 
 rbenv_gem "passenger" do

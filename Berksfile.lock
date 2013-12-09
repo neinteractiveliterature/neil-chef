@@ -37,6 +37,9 @@
     "user": {
       "locked_version": "0.3.0"
     },
+    "ufw": {
+      "locked_version": "0.6.4"
+    },
     "postfix": {
       "locked_version": "2.1.4",
       "git": "git://github.com/nbudin/postfix.git",
@@ -46,6 +49,11 @@
       "locked_version": "0.0.1",
       "git": "git://github.com/nbudin/backupninja-cookbook.git",
       "ref": "142f7770623058f417885b7fafe5bcb7ff3aea40"
+    },
+    "elasticsearch": {
+      "locked_version": "0.3.7",
+      "git": "git://github.com/nbudin/cookbook-elasticsearch.git",
+      "ref": "30c63c80a4ede7f5d76f5c197894125b7d695906"
     },
     "sugarpond_backups": {
       "path": "./sugarpond_backups"
@@ -98,17 +106,32 @@
     "cron": {
       "locked_version": "1.2.2"
     },
+    "firewall": {
+      "locked_version": "0.11.2"
+    },
     "known_host": {
       "locked_version": "0.1.3"
+    },
+    "xml": {
+      "locked_version": "1.2.0"
+    },
+    "java": {
+      "locked_version": "1.15.4"
+    },
+    "aws": {
+      "locked_version": "0.101.2"
+    },
+    "monit": {
+      "locked_version": "0.7.1"
+    },
+    "ark": {
+      "locked_version": "0.4.0"
     },
     "python": {
       "locked_version": "1.2.2"
     },
     "database": {
       "locked_version": "1.4.0"
-    },
-    "aws": {
-      "locked_version": "0.101.2"
     },
     "xfs": {
       "locked_version": "1.1.0"

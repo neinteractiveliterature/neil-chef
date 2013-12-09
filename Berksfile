@@ -12,10 +12,12 @@ cookbook 'chef-client'
 cookbook 'unattended-upgrades', github: "firstbanco/chef-unattended-upgrades"
 cookbook 'ssl', ">= 1.0.8"
 cookbook 'user'
+cookbook 'ufw'
 
 group :forked do
   cookbook 'postfix', github: "nbudin/postfix"
   cookbook 'backupninja', github: "nbudin/backupninja-cookbook"
+  cookbook 'elasticsearch', github: "nbudin/cookbook-elasticsearch"
 end
 
 group :sugarpond do

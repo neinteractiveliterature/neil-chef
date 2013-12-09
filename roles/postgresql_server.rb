@@ -26,5 +26,10 @@ override_attributes(
     "postgresql" => {
       "s3_bucket" => "nbudin"
     }
+  },
+  "firewall" => {
+    "rules" => [
+      { "postgresql" => { "port" => 5432 } }
+    ]
   }
 )

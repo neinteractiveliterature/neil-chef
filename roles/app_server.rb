@@ -17,7 +17,7 @@ run_list(
 
 override_attributes(
   "nginx" => {
-    "version" => "1.4.2",
+    "version" => "1.4.4",
     "install_method" => "source",
     "gzip" => "on",
     "init_style" => "upstart",
@@ -25,9 +25,9 @@ override_attributes(
       "modules" => ["nginx::http_ssl_module", "nginx::http_spdy_module", "nginx::passenger"]
     },
     "passenger" => {
-      "version" => "4.0.19",
-      "ruby" => "/opt/rbenv/versions/1.9.3-p392/bin/ruby",
-      "root" => "/opt/rbenv/versions/1.9.3-p392/lib/ruby/gems/1.9.1/gems/passenger-4.0.19"
+      "version" => "4.0.25",
+      "ruby" => "/opt/rbenv/versions/2.0.0-p353/bin/ruby",
+      "root" => "/opt/rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/passenger-4.0.25"
     }
   }, 
   "postfix" => {
@@ -35,8 +35,14 @@ override_attributes(
     "smtp_sasl_security_options" => "noanonymous",
     "smtp_sasl_user_name" => "natbudin@gmail.com",
     "smtp_tls_cafile" => "",
-    "relayhost" => "[smtp.sendgrid.net]:587",
+    "relayhost" => "[smtp.mandrillapp.com]:587",
     "smtp_use_tls" => "yes"
   },
-  "users" => ['www-data', 'deploy']
+  "users" => ['www-data', 'deploy'],
+  "firewall" => {
+    "rules" => [
+      { "http" => { "port" => 80 } },
+      { "https" => { "port" => 443 } }
+    ]
+  }
 )

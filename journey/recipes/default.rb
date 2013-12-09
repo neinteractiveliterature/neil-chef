@@ -8,7 +8,7 @@
 #
 
 app_config = Chef::EncryptedDataBagItem.load("journey", "config")
-ruby_ver = "2.0.0-p247"
+ruby_ver = "2.0.0-p353"
 
 rbenv_gem 'bundler' do
   action :install
