@@ -1,11 +1,11 @@
-chef_api :config
 site :opscode
+chef_api :config
 
 cookbook 'apt'
 cookbook 'build-essential'
 cookbook 'networking_basic'
 cookbook 'rbenv', ">= 1.5.0"
-cookbook 'nginx', github: "opscode-cookbooks/nginx"
+cookbook 'nginx'
 cookbook 'mysql'
 cookbook 'postgresql'
 cookbook 'chef-client'
@@ -13,6 +13,11 @@ cookbook 'unattended-upgrades', github: "firstbanco/chef-unattended-upgrades"
 cookbook 'ssl', ">= 1.0.8"
 cookbook 'user'
 cookbook 'ufw'
+
+# needed for nginx, somehow
+cookbook 'runit', "~> 1.2"
+cookbook 'yum-epel', '~> 0.3'
+cookbook 'yum', '~> 3.0'
 
 group :forked do
   cookbook 'postfix', github: "nbudin/postfix"

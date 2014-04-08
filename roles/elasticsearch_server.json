@@ -1,0 +1,29 @@
+{
+  "name": "elasticsearch_server",
+  "description": "ElasticSearch server",
+
+  "run_list": [
+    "role[debian]",
+    "recipe[java]",
+    "recipe[elasticsearch::deb]",
+    "recipe[elasticsearch::proxy]"
+  ],
+
+  "override_attributes": {
+    "java": {
+      "install_flavor": "openjdk",
+      "jdk_version": "7"
+    },
+    "elasticsearch": {
+      "allocated_memory": "512M",
+      "nginx": {
+        "port": 443,
+        "server_name": "elasticsearch.sugarpond.net",
+        "ssl": {
+          "cert_file": "/etc/ssl/certs/elasticsearch.sugarpond.net.combined.crt",
+          "key_file": "/etc/ssl/private/elasticsearch.sugarpond.net.key"
+        }
+      }
+    }
+  }
+}

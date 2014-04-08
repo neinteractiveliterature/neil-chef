@@ -93,18 +93,9 @@ template "#{shared_config_path}/initializers/secret_token.rb" do
   mode 0640
 end
 
-template "#{node['nginx']['dir']}/sites-available/#{app_name}" do
-  mode 0644  
-  source "nginx.conf.erb"
-  variables(
-    {
-      :root => "#{app_path}/current/public",
-      :server_names => server_names,
-      :passenger_ruby => "#{node['rbenv']['root']}/versions/#{ruby_ver}/bin/ruby"
-    }
-  )
-  notifies :restart, resources(:service => "nginx")
-end
-
 nginx_site app_name do
+  template "nginx.conf.erb"
+  server_name server_names
+  docroot "#{app_path}/current/public"
+  passenger_ruby "#{node['rbenv']['root']}/versions/#{ruby_ver}/bin/ruby"
 end

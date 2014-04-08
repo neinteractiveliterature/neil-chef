@@ -1,21 +1,21 @@
 server {
   listen 80;
-  server_name <%= @server_names.join(" ") %>;
+  server_name <%= @params[:server_name].join(" ") %>;
   return 301 https://$server_name$request_uri;
 }
 
-<% @server_names.each do |server_name| %>
+<% @params[:server_name].each do |server_name| %>
 server {
   listen 443 ssl;
   
   server_name <%= server_name %>;
-  root    <%= @root %>;
+  root    <%= @params[:docroot] %>;
   passenger_enabled on;
-  passenger_ruby <%= @passenger_ruby %>;
+  passenger_ruby <%= @params[:passenger_ruby] %>;
   
   ssl on;
-  ssl_certificate <%= node['ssl']['certs_dir'] %>/<%= server_name %>.combined.crt;
-  ssl_certificate_key <%= node['ssl']['keys_dir'] %>/<%= server_name %>.key;
+  ssl_certificate <%= node['ssl']['certs_dir'] %>/<%= @params[:cert_name] %>.combined.crt;
+  ssl_certificate_key <%= node['ssl']['keys_dir'] %>/<%= @params[:cert_name] %>.key;
   
   server_tokens off;
   ssl_protocols SSLv3 TLSv1 TLSv1.1 TLSv1.2;

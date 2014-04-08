@@ -1,10 +1,10 @@
 {
   "sources": {
     "apt": {
-      "locked_version": "1.9.2"
+      "locked_version": "2.3.8"
     },
     "build-essential": {
-      "locked_version": "1.4.0"
+      "locked_version": "2.0.0"
     },
     "networking_basic": {
       "locked_version": "0.0.5"
@@ -13,9 +13,7 @@
       "locked_version": "1.5.0"
     },
     "nginx": {
-      "locked_version": "1.8.1",
-      "git": "git://github.com/opscode-cookbooks/nginx.git",
-      "ref": "bccc005adf8805dbea46b44426dea7ff6d2389d0"
+      "locked_version": "2.5.0"
     },
     "mysql": {
       "locked_version": "3.0.0"
@@ -40,6 +38,15 @@
     "ufw": {
       "locked_version": "0.6.4"
     },
+    "runit": {
+      "locked_version": "1.5.10"
+    },
+    "yum-epel": {
+      "locked_version": "0.3.4"
+    },
+    "yum": {
+      "locked_version": "3.1.6"
+    },
     "postfix": {
       "locked_version": "2.1.4",
       "git": "git://github.com/nbudin/postfix.git",
@@ -51,9 +58,9 @@
       "ref": "142f7770623058f417885b7fafe5bcb7ff3aea40"
     },
     "elasticsearch": {
-      "locked_version": "0.3.7",
+      "locked_version": "0.3.8",
       "git": "git://github.com/nbudin/cookbook-elasticsearch.git",
-      "ref": "30c63c80a4ede7f5d76f5c197894125b7d695906"
+      "ref": "c76e935c77107187b019b0671c9f51a650941ab1"
     },
     "sugarpond_backups": {
       "path": "./sugarpond_backups"
@@ -85,20 +92,20 @@
     "dmg": {
       "locked_version": "1.1.0"
     },
-    "yum": {
-      "locked_version": "2.2.0"
-    },
     "windows": {
       "locked_version": "1.8.8"
     },
     "chef_handler": {
       "locked_version": "1.1.4"
     },
-    "runit": {
-      "locked_version": "1.1.2"
-    },
     "ohai": {
       "locked_version": "1.1.8"
+    },
+    "bluepill": {
+      "locked_version": "2.3.1"
+    },
+    "rsyslog": {
+      "locked_version": "1.5.0"
     },
     "openssl": {
       "locked_version": "1.0.2"

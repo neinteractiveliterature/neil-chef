@@ -33,9 +33,6 @@ end
 
 app_name = "journey"
 app_path = "/var/www/#{app_name}"
-server_names = %w(journeysurveys.com www.journeysurveys.com journeysurveys.net www.journeysurveys.net journey.popper.sugarpond.net secure.journeysurveys.com secure.journeysurveys.net)
-secure_server_name = "secure.journeysurveys.com"
-ssl_redirect_servers = ["secure.journeysurveys.net"]
 
 directory app_path do
   action :create
@@ -98,20 +95,11 @@ mysql_database "journey_production" do
   action :create
 end
 
-template "#{node['nginx']['dir']}/sites-available/#{app_name}" do
-  mode 0644  
-  source "nginx.conf.erb"
-  variables(
-    {
-      :root => "#{app_path}/current/public",
-      :server_names => server_names,
-      :secure_server_name => secure_server_name,
-      :ssl_redirect_servers => ssl_redirect_servers,
-      :passenger_ruby => "#{node['rbenv']['root']}/versions/#{ruby_ver}/bin/ruby"
-    }
-  )
-  notifies :restart, resources(:service => "nginx")
-end
-
 nginx_site app_name do
+  template "nginx.conf.erb"
+  docroot "#{app_path}/current/public"
+  server_name %w(journeysurveys.com www.journeysurveys.com journeysurveys.net www.journeysurveys.net journey.popper.sugarpond.net secure.journeysurveys.com secure.journeysurveys.net)
+  secure_server_name "secure.journeysurveys.com"
+  cert_name "www.sugarpond.net"
+  passenger_ruby "#{node['rbenv']['root']}/versions/#{ruby_ver}/bin/ruby"
 end

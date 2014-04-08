@@ -1,27 +1,20 @@
 server {
   listen 80;
-  server_name <%= @server_names.join(" ") %>;
-  return 301 https://<%= @secure_server_name %>$request_uri;
+  server_name <%= @params[:server_name].join(" ") %>;
+  return 301 https://<%= @params[:secure_server_name] %>$request_uri;
 }
 
 server {
   listen 443 ssl;
-  server_name <%= @secure_server_name %>;
+  server_name <%= @params[:secure_server_name] %>;
 
-  <% if @heroku_proxy %>
-  location / {
-    proxy_pass <%= @heroku_proxy %>;
-    proxy_set_header Host $host;
-  }
-  <% else %>
-  root    <%= @root %>;
+  root    <%= @params[:docroot] %>;
   passenger_enabled on;
-  passenger_ruby <%= @passenger_ruby %>;
-  <% end %>
+  passenger_ruby <%= @params[:passenger_ruby] %>;
   
   ssl on;
-  ssl_certificate <%= node['ssl']['certs_dir'] %>/<%= @secure_server_name %>.combined.crt;
-  ssl_certificate_key <%= node['ssl']['keys_dir'] %>/<%= @secure_server_name %>.key;
+  ssl_certificate <%= node['ssl']['certs_dir'] %>/<%= @params[:cert_name] %>.combined.crt;
+  ssl_certificate_key <%= node['ssl']['keys_dir'] %>/<%= @params[:cert_name] %>.key;
   
   server_tokens off;
   ssl_protocols SSLv3 TLSv1 TLSv1.1 TLSv1.2;
@@ -31,16 +24,16 @@ server {
   ssl_session_cache shared:SSL:10m;
 }
 
-<% @ssl_redirect_servers.each do |ssl_redirect_server| %>
+<% (@params[:server_name] - [@params[:secure_server_name]]).each do |ssl_redirect_server| %>
 server {
   listen 443;
   server_name <%= ssl_redirect_server %>;
 
-  return 301 https://<%= @secure_server_name %>$request_uri;
+  return 301 https://<%= @params[:secure_server_name] %>$request_uri;
 
   ssl on;
-  ssl_certificate <%= node['ssl']['certs_dir'] %>/<%= ssl_redirect_server %>.combined.crt;
-  ssl_certificate_key <%= node['ssl']['keys_dir'] %>/<%= ssl_redirect_server %>.key;
+  ssl_certificate <%= node['ssl']['certs_dir'] %>/<%= @params[:cert_name] %>.combined.crt;
+  ssl_certificate_key <%= node['ssl']['keys_dir'] %>/<%= @params[:cert_name] %>.key;
   
   server_tokens off;
   ssl_protocols SSLv3 TLSv1 TLSv1.1 TLSv1.2;
