@@ -6,7 +6,7 @@ provisioner:
   name: chef_zero
 
 platforms:
-  - name: ubuntu-12.10
+  - name: ubuntu-14.04
     driver_config:
       customize:
         cpus: 2
@@ -15,12 +15,12 @@ platforms:
 suites:
   - name: default
     run_list:
-      #- role[mysql_server]
-      #- role[postgresql_server]
-      #- role[app_server]
-      #- role[elasticsearch_server]
-      #- recipe[sugarpond_errbit]
-      #- recipe[journey]
+      - role[mysql_server]
+      - role[postgresql_server]
+      - role[app_server]
+      - role[elasticsearch_server]
+      - recipe[sugarpond_errbit]
+      - recipe[journey]
       - recipe[nginx]
       - recipe[rbenv]
       - recipe[illyan]
