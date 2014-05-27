@@ -9,14 +9,16 @@
 
 include_recipe "ssl"
 
-orig_ca_file = File.join(node['ssl']['certs_dir'], "#{node['hostname']}.chain.crt")
-orig_cert_file = File.join(node['ssl']['certs_dir'], "#{node['hostname']}.crt")
-orig_key_file = File.join(node['ssl']['keys_dir'], "#{node['hostname']}.key")
+cert_name = "www.sugarpond.net"
+
+orig_ca_file = File.join(node['ssl']['certs_dir'], "#{cert_name}.chain.crt")
+orig_cert_file = File.join(node['ssl']['certs_dir'], "#{cert_name}.crt")
+orig_key_file = File.join(node['ssl']['keys_dir'], "#{cert_name}.key")
 
 ssl_dir = node['mysql']['conf_dir']
-ca_file = File.join(ssl_dir, "#{node['hostname']}-ca.pem")
-cert_file = File.join(ssl_dir, "#{node['hostname']}-cert.pem")
-key_file = File.join(ssl_dir, "#{node['hostname']}-key.pem")
+ca_file = File.join(ssl_dir, "#{cert_name}-ca.pem")
+cert_file = File.join(ssl_dir, "#{cert_name}-cert.pem")
+key_file = File.join(ssl_dir, "#{cert_name}-key.pem")
 
 execute "copy_ssl_certs_and_key" do
   command "cp #{orig_ca_file} #{ca_file} && cp #{orig_cert_file} #{cert_file} && cp #{orig_key_file} #{key_file}"
