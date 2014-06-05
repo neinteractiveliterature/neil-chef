@@ -23,7 +23,7 @@
       "gzip": "on",
       "init_style": "upstart",
       "source": {
-        "modules": ["nginx::http_ssl_module", "nginx::http_spdy_module", "nginx::passenger"]
+        "modules": ["nginx::ipv6", "nginx::http_ssl_module", "nginx::http_spdy_module", "nginx::passenger"]
       },
       "passenger": {
         "version": "4.0.43",
