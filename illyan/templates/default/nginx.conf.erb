@@ -12,8 +12,12 @@ server {
   
   server_name <%= server_name %>;
   root    <%= @params[:docroot] %>;
-  passenger_enabled on;
-  passenger_ruby <%= @params[:passenger_ruby] %>;
+  try_files $uri /system/maintenance.html @passenger;
+
+  location @passenger {
+    passenger_enabled on;
+    passenger_ruby <%= @params[:passenger_ruby] %>;
+  }
   
   ssl on;
   ssl_certificate <%= node['ssl']['certs_dir'] %>/<%= @params[:cert_name] %>.combined.crt;
