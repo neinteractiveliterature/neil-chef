@@ -11,6 +11,7 @@
 
   "override_attributes": {
     "postgresql": {
+      "version": "9.3",
       "config": {
         "listen_addresses": "0.0.0.0"
       },

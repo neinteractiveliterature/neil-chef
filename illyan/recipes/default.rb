@@ -8,7 +8,7 @@
 #
 
 app_config = Chef::EncryptedDataBagItem.load("illyan", "config")
-ruby_ver = "1.9.3-p547"
+ruby_ver = "2.1.2"
 
 rbenv_gem 'bundler' do
   action :install
