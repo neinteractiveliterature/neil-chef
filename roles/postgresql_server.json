@@ -19,6 +19,7 @@
         "postgres": ""
       },
       "pg_hba": [
+        { "type": "local", "db": "all", "user": "postgres", "addr": "", "method": "trust" },
         { "type": "hostssl", "db": "all", "user": "all", "addr": "0.0.0.0/0", "method": "md5" }
       ]
     },
