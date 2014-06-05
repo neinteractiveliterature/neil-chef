@@ -16,6 +16,9 @@
     },
     "elasticsearch": {
       "allocated_memory": "512M",
+      "path": {
+        "conf": "/etc/elasticsearch"
+      },
       "nginx": {
         "port": 443,
         "server_name": "elasticsearch.sugarpond.net",

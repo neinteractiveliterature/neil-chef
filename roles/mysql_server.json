@@ -4,7 +4,7 @@
 
   "run_list": [
     "role[debian]",
-    "recipe[mysql]",
+    "recipe[mysql::client]",
     "recipe[mysql::server]",
     "recipe[sugarpond_backups::mysql]",
     "recipe[sugarpond_mysql_ssl]"

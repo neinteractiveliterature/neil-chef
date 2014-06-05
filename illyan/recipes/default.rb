@@ -8,7 +8,7 @@
 #
 
 app_config = Chef::EncryptedDataBagItem.load("illyan", "config")
-ruby_ver = "1.9.3-p484"
+ruby_ver = "1.9.3-p547"
 
 rbenv_gem 'bundler' do
   action :install
@@ -77,10 +77,21 @@ mysql_database "illyan_production" do
   action :create
 end
 
+template "#{node['nginx']['dir']}/sites-available/#{app_name}" do
+  source "nginx.conf.erb"
+  mode 0644
+  action :create
+  notifies :reload, "service[nginx]" if ::File.exists?("#{node['nginx']['dir']}/sites-enabled/#{app_name}")
+  variables(
+    params: {
+      server_name: ["accounts.sugarpond.net"],
+      cert_name: "www.sugarpond.net",
+      docroot: "#{app_path}/current/public",
+      passenger_ruby: "#{node['rbenv']['root']}/versions/#{ruby_ver}/bin/ruby"
+    }
+  )
+end
+
 nginx_site app_name do
-  template "nginx.conf.erb"
-  docroot "#{app_path}/current/public"
-  server_name ["accounts.sugarpond.net"]
-  passenger_ruby "#{node['rbenv']['root']}/versions/#{ruby_ver}/bin/ruby"
-  cert_name "www.sugarpond.net"
+  action :enable
 end

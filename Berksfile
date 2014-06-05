@@ -1,5 +1,4 @@
-site :opscode
-chef_api :config
+source "https://api.berkshelf.com"
 
 cookbook 'apt'
 cookbook 'build-essential'
@@ -7,6 +6,7 @@ cookbook 'networking_basic'
 cookbook 'rbenv', ">= 1.5.0"
 cookbook 'nginx'
 cookbook 'mysql'
+cookbook 'mysql-chef_gem'
 cookbook 'postgresql'
 cookbook 'chef-client'
 cookbook 'unattended-upgrades', github: "firstbanco/chef-unattended-upgrades"

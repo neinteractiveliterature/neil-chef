@@ -1,147 +1,146 @@
-{
-  "sources": {
-    "apt": {
-      "locked_version": "2.3.8"
-    },
-    "build-essential": {
-      "locked_version": "2.0.0"
-    },
-    "networking_basic": {
-      "locked_version": "0.0.5"
-    },
-    "rbenv": {
-      "locked_version": "1.5.0"
-    },
-    "nginx": {
-      "locked_version": "2.5.0"
-    },
-    "mysql": {
-      "locked_version": "3.0.0"
-    },
-    "postgresql": {
-      "locked_version": "2.4.0"
-    },
-    "chef-client": {
-      "locked_version": "2.2.2"
-    },
-    "unattended-upgrades": {
-      "locked_version": "1.0.0",
-      "git": "git://github.com/firstbanco/chef-unattended-upgrades.git",
-      "ref": "24cf40f5743fac8e7814e58cc8e3dde2f1ca2de9"
-    },
-    "ssl": {
-      "locked_version": "1.0.8"
-    },
-    "user": {
-      "locked_version": "0.3.0"
-    },
-    "ufw": {
-      "locked_version": "0.6.4"
-    },
-    "runit": {
-      "locked_version": "1.5.10"
-    },
-    "yum-epel": {
-      "locked_version": "0.3.4"
-    },
-    "yum": {
-      "locked_version": "3.1.6"
-    },
-    "postfix": {
-      "locked_version": "2.1.4",
-      "git": "git://github.com/nbudin/postfix.git",
-      "ref": "51dff261c90c0c32523dc74b0dd1fab928d65ccb"
-    },
-    "backupninja": {
-      "locked_version": "0.0.1",
-      "git": "git://github.com/nbudin/backupninja-cookbook.git",
-      "ref": "142f7770623058f417885b7fafe5bcb7ff3aea40"
-    },
-    "elasticsearch": {
-      "locked_version": "0.3.8",
-      "git": "git://github.com/nbudin/cookbook-elasticsearch.git",
-      "ref": "c76e935c77107187b019b0671c9f51a650941ab1"
-    },
-    "sugarpond_backups": {
-      "path": "./sugarpond_backups"
-    },
-    "sugarpond_mysql_ssl": {
-      "path": "./sugarpond_mysql_ssl"
-    },
-    "sugarpond_rubies": {
-      "path": "./sugarpond_rubies"
-    },
-    "sugarpond_logrotate": {
-      "path": "./sugarpond_logrotate"
-    },
-    "sugarpond_nginx_ssl": {
-      "path": "./sugarpond_nginx_ssl"
-    },
-    "sugarpond_errbit": {
-      "path": "./sugarpond_errbit"
-    },
-    "illyan": {
-      "path": "./illyan"
-    },
-    "journey": {
-      "path": "./journey"
-    },
-    "git": {
-      "locked_version": "2.5.0"
-    },
-    "dmg": {
-      "locked_version": "1.1.0"
-    },
-    "windows": {
-      "locked_version": "1.8.8"
-    },
-    "chef_handler": {
-      "locked_version": "1.1.4"
-    },
-    "ohai": {
-      "locked_version": "1.1.8"
-    },
-    "bluepill": {
-      "locked_version": "2.3.1"
-    },
-    "rsyslog": {
-      "locked_version": "1.5.0"
-    },
-    "openssl": {
-      "locked_version": "1.0.2"
-    },
-    "cron": {
-      "locked_version": "1.2.2"
-    },
-    "firewall": {
-      "locked_version": "0.11.2"
-    },
-    "known_host": {
-      "locked_version": "0.1.3"
-    },
-    "xml": {
-      "locked_version": "1.2.0"
-    },
-    "java": {
-      "locked_version": "1.15.4"
-    },
-    "aws": {
-      "locked_version": "0.101.2"
-    },
-    "monit": {
-      "locked_version": "0.7.1"
-    },
-    "ark": {
-      "locked_version": "0.4.0"
-    },
-    "python": {
-      "locked_version": "1.2.2"
-    },
-    "database": {
-      "locked_version": "1.4.0"
-    },
-    "xfs": {
-      "locked_version": "1.1.0"
-    }
-  }
-}
+DEPENDENCIES
+  apt
+  backupninja
+    git: git://github.com/nbudin/backupninja-cookbook.git
+    revision: 22f4771dce7240f6fccfe4b8edd1b7c143ac88b8
+  build-essential
+  chef-client
+  elasticsearch
+    git: git://github.com/nbudin/cookbook-elasticsearch.git
+    revision: f19aa151c4cc161c20bb121969de91a735b8c0b4
+  illyan
+    path: illyan
+  journey
+    path: journey
+  mysql
+  mysql-chef_gem
+  networking_basic
+  nginx
+  postfix
+    git: git://github.com/nbudin/postfix.git
+    revision: 51dff261c90c0c32523dc74b0dd1fab928d65ccb
+  postgresql
+  rbenv (>= 1.5.0)
+  runit (~> 1.2)
+  ssl (>= 1.0.8)
+  sugarpond_backups
+    path: sugarpond_backups
+  sugarpond_errbit
+    path: sugarpond_errbit
+  sugarpond_logrotate
+    path: sugarpond_logrotate
+  sugarpond_mysql_ssl
+    path: sugarpond_mysql_ssl
+  sugarpond_nginx_ssl
+    path: sugarpond_nginx_ssl
+  sugarpond_rubies
+    path: sugarpond_rubies
+  ufw
+  unattended-upgrades
+    git: git://github.com/firstbanco/chef-unattended-upgrades.git
+    revision: c0007662f54ce060e6297d5808cc563306180dfd
+  user
+  yum (~> 3.0)
+  yum-epel (~> 0.3)
+
+GRAPH
+  apt (2.4.0)
+  ark (0.8.2)
+  aws (2.2.2)
+  backupninja (0.0.1)
+    known_host (>= 0.0.0)
+    openssl (>= 0.0.0)
+  bluepill (2.3.1)
+    rsyslog (>= 0.0.0)
+  build-essential (2.0.2)
+  chef-client (3.5.0)
+    cron (>= 1.2.0)
+    logrotate (>= 1.2.0)
+  chef_handler (1.1.6)
+  cron (1.4.0)
+  database (2.2.0)
+    aws (>= 0.0.0)
+    mysql (>= 5.0.0)
+    mysql-chef_gem (>= 0.0.0)
+    postgresql (>= 1.0.0)
+    xfs (>= 0.0.0)
+  dmg (2.2.0)
+  elasticsearch (0.3.9)
+    ark (>= 0.2.4)
+    build-essential (>= 0.0.0)
+    java (>= 0.0.0)
+    monit (>= 0.0.0)
+    xml (>= 0.0.0)
+  firewall (0.11.8)
+  git (4.0.2)
+    build-essential (>= 0.0.0)
+    dmg (>= 0.0.0)
+    runit (>= 1.0.0)
+    windows (>= 0.0.0)
+    yum (~> 3.0)
+    yum-epel (>= 0.0.0)
+  illyan (0.1.0)
+    database (>= 0.0.0)
+  java (1.22.0)
+  journey (0.1.0)
+    database (>= 0.0.0)
+  known_host (0.1.3)
+  logrotate (1.5.0)
+  monit (0.7.1)
+  mysql (5.2.12)
+  mysql-chef_gem (0.0.2)
+    build-essential (>= 0.0.0)
+    mysql (>= 0.0.0)
+  networking_basic (0.0.7)
+  nginx (2.7.2)
+    apt (~> 2.2)
+    bluepill (~> 2.3)
+    build-essential (~> 2.0)
+    ohai (~> 2.0)
+    runit (~> 1.2)
+    yum-epel (~> 0.3)
+  ohai (2.0.0)
+  openssl (1.1.0)
+  postfix (2.1.4)
+  postgresql (3.4.0)
+    apt (>= 1.9.0)
+    build-essential (>= 0.0.0)
+    openssl (>= 0.0.0)
+  python (1.4.6)
+    build-essential (>= 0.0.0)
+    yum-epel (>= 0.0.0)
+  rbenv (1.7.1)
+    apt (>= 0.0.0)
+    build-essential (>= 0.0.0)
+    git (>= 0.0.0)
+    ohai (>= 1.1)
+  rsyslog (1.12.2)
+  runit (1.5.10)
+    build-essential (>= 0.0.0)
+    yum (~> 3.0)
+    yum-epel (>= 0.0.0)
+  ssl (1.1.0)
+  sugarpond_backups (0.1.0)
+    backupninja (>= 0.0.0)
+    python (>= 0.0.0)
+  sugarpond_errbit (0.1.0)
+  sugarpond_logrotate (0.1.0)
+  sugarpond_mysql_ssl (0.1.0)
+    mysql (>= 5.0.0)
+    ssl (>= 0.0.0)
+  sugarpond_nginx_ssl (0.1.0)
+  sugarpond_rubies (0.1.0)
+    rbenv (>= 0.0.0)
+  ufw (0.7.4)
+    firewall (>= 0.9.0)
+  unattended-upgrades (1.0.0)
+    apt (>= 0.0.0)
+  user (0.3.0)
+  windows (1.31.0)
+    chef_handler (>= 0.0.0)
+  xfs (1.1.0)
+  xml (1.2.4)
+    build-essential (>= 0.0.0)
+  yum (3.2.0)
+  yum-epel (0.3.6)
+    yum (~> 3.0)

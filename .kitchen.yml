@@ -27,3 +27,14 @@ suites:
     data_bags_path: data_bags
     encrypted_data_bag_secret_key_path: encrypted_data_bag_secret
     roles_path: roles
+    attributes:
+      mysql:
+        ssl:
+          cert_name: snakeoil-dependent
+      postgresql:
+        version: "9.3"
+      elasticsearch:
+        nginx:
+          ssl:
+            cert_file: /etc/ssl/certs/snakeoil-dependent.combined.crt
+            key_file: /etc/ssl/certs/snakeoil-dependent.key

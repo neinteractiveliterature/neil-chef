@@ -8,8 +8,8 @@
     "recipe[rbenv::ruby_build]",
     "recipe[sugarpond_rubies]",
     "recipe[nginx]",
-    "recipe[mysql]",
-    "recipe[mysql::ruby]",
+    "recipe[mysql::client]",
+    "recipe[mysql-chef_gem]",
     "recipe[postgresql]",
     "recipe[postfix]",
     "recipe[postfix::sasl_auth]",
@@ -26,9 +26,9 @@
         "modules": ["nginx::http_ssl_module", "nginx::http_spdy_module", "nginx::passenger"]
       },
       "passenger": {
-        "version": "4.0.40",
-        "ruby": "/opt/rbenv/versions/2.0.0-p353/bin/ruby",
-        "root": "/opt/rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/passenger-4.0.40"
+        "version": "4.0.43",
+        "ruby": "/opt/rbenv/versions/2.1.2/bin/ruby",
+        "root": "/opt/rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/passenger-4.0.43"
       }
     }, 
     "postfix": {

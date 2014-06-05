@@ -9,7 +9,7 @@
 
 mongodb = Chef::EncryptedDataBagItem.load("sugarpond_errbit", "mongodb")
 secret_token = Chef::EncryptedDataBagItem.load("sugarpond_errbit", "secret_token")
-ruby_ver = "1.9.3-p484"
+ruby_ver = "1.9.3-p547"
 
 rbenv_gem 'bundler' do
   action :install
@@ -93,9 +93,20 @@ template "#{shared_config_path}/initializers/secret_token.rb" do
   mode 0640
 end
 
+template "#{node['nginx']['dir']}/sites-available/#{app_name}" do
+  source "nginx.conf.erb"
+  mode 0644
+  action :create
+  notifies :reload, "service[nginx]" if ::File.exists?("#{node['nginx']['dir']}/sites-enabled/#{app_name}")
+  variables(
+    params: {
+      server_name: server_names,
+      docroot: "#{app_path}/current/public",
+      passenger_ruby: "#{node['rbenv']['root']}/versions/#{ruby_ver}/bin/ruby"
+    }
+  )
+end
+
 nginx_site app_name do
-  template "nginx.conf.erb"
-  server_name server_names
-  docroot "#{app_path}/current/public"
-  passenger_ruby "#{node['rbenv']['root']}/versions/#{ruby_ver}/bin/ruby"
+  action :enable
 end

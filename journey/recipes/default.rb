@@ -8,7 +8,7 @@
 #
 
 app_config = Chef::EncryptedDataBagItem.load("journey", "config")
-ruby_ver = "2.0.0-p353"
+ruby_ver = "2.1.2"
 
 rbenv_gem 'bundler' do
   action :install
@@ -95,11 +95,22 @@ mysql_database "journey_production" do
   action :create
 end
 
+template "#{node['nginx']['dir']}/sites-available/#{app_name}" do
+  source "nginx.conf.erb"
+  mode 0644
+  action :create
+  notifies :reload, "service[nginx]" if ::File.exists?("#{node['nginx']['dir']}/sites-enabled/#{app_name}")
+  variables(
+    params: {
+      server_name: %w(journeysurveys.com www.journeysurveys.com journeysurveys.net www.journeysurveys.net journey.popper.sugarpond.net secure.journeysurveys.com secure.journeysurveys.net),
+      secure_server_name: "secure.journeysurveys.com",
+      cert_name: "www.sugarpond.net",
+      docroot: "#{app_path}/current/public",
+      passenger_ruby: "#{node['rbenv']['root']}/versions/#{ruby_ver}/bin/ruby"
+    }
+  )
+end
+
 nginx_site app_name do
-  template "nginx.conf.erb"
-  docroot "#{app_path}/current/public"
-  server_name %w(journeysurveys.com www.journeysurveys.com journeysurveys.net www.journeysurveys.net journey.popper.sugarpond.net secure.journeysurveys.com secure.journeysurveys.net)
-  secure_server_name "secure.journeysurveys.com"
-  cert_name "www.sugarpond.net"
-  passenger_ruby "#{node['rbenv']['root']}/versions/#{ruby_ver}/bin/ruby"
+  action :enable
 end

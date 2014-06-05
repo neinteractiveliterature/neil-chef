@@ -8,11 +8,11 @@
 #
 
 #rbenv_ruby "1.8.7-p371"
-rbenv_ruby "1.9.3-p484"
-rbenv_ruby "2.0.0-p353"
+rbenv_ruby "1.9.3-p547"
+rbenv_ruby "2.1.2"
 
 rbenv_gem "passenger" do
-  ruby_version "2.0.0-p353"
+  ruby_version "2.1.2"
   version node["nginx"]["passenger"]["version"]
 end
 
