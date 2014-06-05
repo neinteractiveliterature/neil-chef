@@ -23,6 +23,7 @@ DEPENDENCIES
   rbenv (>= 1.5.0)
   runit (~> 1.2)
   ssl (>= 1.0.8)
+  sudo
   sugarpond_backups
     path: sugarpond_backups
   sugarpond_errbit
@@ -120,6 +121,7 @@ GRAPH
     yum (~> 3.0)
     yum-epel (>= 0.0.0)
   ssl (1.1.0)
+  sudo (2.6.0)
   sugarpond_backups (0.1.0)
     backupninja (>= 0.0.0)
     python (>= 0.0.0)

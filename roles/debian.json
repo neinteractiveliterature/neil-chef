@@ -10,11 +10,22 @@
     "recipe[sugarpond_backups]",
     "recipe[unattended-upgrades]",
     "recipe[ssl]",
+    "recipe[sudo]",
     "recipe[ufw]",
     "recipe[user::data_bag]"
   ],
 
   "override_attributes": { 
+    "authorization": {
+      "sudo": {
+        "passwordless": true,
+        "groups": ["admin"],
+        "sudoers_defaults": [
+          "env_reset",
+          "secure_path=\"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\""
+        ]
+      }
+    },
     "duplicity": {
       "s3_bucket": "nbudin"
     }, 

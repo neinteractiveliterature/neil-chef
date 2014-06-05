@@ -11,6 +11,7 @@ cookbook 'postgresql'
 cookbook 'chef-client'
 cookbook 'unattended-upgrades', github: "firstbanco/chef-unattended-upgrades"
 cookbook 'ssl', ">= 1.0.8"
+cookbook 'sudo'
 cookbook 'user'
 cookbook 'ufw'
 

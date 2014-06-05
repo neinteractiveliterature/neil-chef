@@ -39,7 +39,7 @@
       "relayhost": "[smtp.mandrillapp.com]:587",
       "smtp_use_tls": "yes"
     },
-    "users": ["www-data", "deploy"],
+    "users": ["www-data", "deploy", "nbudin"],
     "firewall": {
       "rules": [
         { "http": { "port": 80 } },
