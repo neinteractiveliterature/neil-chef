@@ -19,6 +19,11 @@ package "libevent-dev" do
   action :install
 end
 
+python_pip "six" do
+  action :install
+  version "1.6.1"
+end
+
 python_pip "WAL-E" do
   action :install
 end
