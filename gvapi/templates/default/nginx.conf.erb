@@ -1,0 +1,22 @@
+server {
+  listen   80;
+  listen   [::]:80;
+  server_name  <%= @params[:server_name] %>;
+
+  root   <%= @params[:docroot] %>;
+
+  auth_basic "Restricted";
+  auth_basic_user_file <%= @params[:htpasswd_file] %>;
+
+  location ~ [^/]\.php(/|$) {
+		fastcgi_split_path_info ^(.+?\.php)(/.*)$;
+    if (!-f $document_root$fastcgi_script_name) {
+            return 404;
+    }
+
+    fastcgi_pass   unix:/tmp/php-fastcgi.sock;
+    fastcgi_index  graphviz.php;
+    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    include fastcgi_params;
+  }
+}

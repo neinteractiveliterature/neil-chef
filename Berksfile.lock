@@ -8,6 +8,11 @@ DEPENDENCIES
   elasticsearch
     git: git://github.com/nbudin/cookbook-elasticsearch.git
     revision: f19aa151c4cc161c20bb121969de91a735b8c0b4
+  gvapi
+    path: gvapi
+  htpasswd
+    git: git://github.com/Youscribe/htpasswd-cookbook.git
+    revision: b04ffadb2b01a98c04e7fb900a35623be70f2b48
   illyan
     path: illyan
   journey
@@ -34,6 +39,8 @@ DEPENDENCIES
     path: sugarpond_mysql_ssl
   sugarpond_nginx_ssl
     path: sugarpond_nginx_ssl
+  sugarpond_php5
+    path: sugarpond_php5
   sugarpond_rubies
     path: sugarpond_rubies
   ufw
@@ -80,6 +87,12 @@ GRAPH
     windows (>= 0.0.0)
     yum (~> 3.0)
     yum-epel (>= 0.0.0)
+  gvapi (0.1.0)
+    htpasswd (>= 0.0.0)
+    sugarpond_php5 (>= 0.0.0)
+  htpasswd (0.1.6)
+    python (>= 0.0.0)
+    ruby (>= 0.0.0)
   illyan (0.1.0)
     database (>= 0.0.0)
   java (1.22.0)
@@ -116,6 +129,7 @@ GRAPH
     git (>= 0.0.0)
     ohai (>= 1.1)
   rsyslog (1.12.2)
+  ruby (0.9.2)
   runit (1.5.10)
     build-essential (>= 0.0.0)
     yum (~> 3.0)
@@ -131,6 +145,7 @@ GRAPH
     mysql (>= 5.0.0)
     ssl (>= 0.0.0)
   sugarpond_nginx_ssl (0.1.0)
+  sugarpond_php5 (0.1.0)
   sugarpond_rubies (0.1.0)
     rbenv (>= 0.0.0)
   ufw (0.7.4)

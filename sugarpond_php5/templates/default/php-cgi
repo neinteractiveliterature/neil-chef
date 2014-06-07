@@ -1,0 +1,13 @@
+#/etc/default/php-cgi
+
+PHP5=/usr/bin/php5-cgi
+
+FASTCGI_USER=www-data
+FASTCGI_GROUP=www-data
+
+#ADDRESS=127.0.0.1
+#PORT=9000
+
+SOCKET=/tmp/php-fastcgi.sock
+
+CHILDREN=6

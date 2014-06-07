@@ -22,6 +22,7 @@ suites:
       - recipe[sugarpond_errbit]
       - recipe[journey]
       - recipe[illyan]
+      - recipe[gvapi]
     data_bags_path: data_bags
     encrypted_data_bag_secret_key_path: encrypted_data_bag_secret
     roles_path: roles
