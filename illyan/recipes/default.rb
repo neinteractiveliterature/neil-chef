@@ -58,7 +58,8 @@ template "#{shared_config_path}/illyan.yml" do
   variables(
     :secret_token => app_config['secret_token'],
     :hoptoad_api_key => app_config['hoptoad_api_key'],
-    :devise_token => app_config['devise_token']
+    :devise_token => app_config['devise_token'],
+    :rollbar_access_token => app_config['rollbar_access_token']
   )
   owner "deploy"
   group "www-data"
