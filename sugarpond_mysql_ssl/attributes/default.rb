@@ -1,0 +1,1 @@
+default['mysql']['ssl']['cert_name'] = 'www.sugarpond.net'
