@@ -19,7 +19,6 @@ suites:
       - role[postgresql_server]
       - role[app_server]
       - role[elasticsearch_server]
-      - recipe[sugarpond_errbit]
       - recipe[journey]
       - recipe[illyan]
       - recipe[gvapi]
