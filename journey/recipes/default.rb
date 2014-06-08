@@ -7,7 +7,8 @@
 # All rights reserved - Do Not Redistribute
 #
 
-app_config = Chef::EncryptedDataBagItem.load("journey", "config")
+config_data = Chef::EncryptedDataBagItem.load("journey", "config")
+app_config = {"SUGAR_POND_BRANDING" => 1, "ILLYAN_URL" => "https://accounts.sugarpond.net"}.merge(config_data.to_hash)
 ruby_ver = "2.1.2"
 
 rbenv_gem 'bundler' do
@@ -71,13 +72,8 @@ file "#{app_path}/shared/log/production.log" do
   mode 0664
 end
 
-template "#{shared_config_path}/journey.yml" do
-  source "journey.yml.erb"
-  variables(
-    :secret_token => app_config['secret_token'],
-    :airbrake_api_key => app_config['airbrake_api_key'],
-    :illyan_token => app_config['illyan_token']
-  )
+file "#{shared_config_path}/application.yml" do
+  content(app_config.reject {|k, v| k == "id"}.to_yaml)
   owner "deploy"
   group "www-data"
   mode 0640
