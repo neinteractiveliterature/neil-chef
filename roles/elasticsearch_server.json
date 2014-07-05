@@ -19,6 +19,7 @@
       "path": {
         "conf": "/etc/elasticsearch"
       },
+      "version": "1.2.1",
       "nginx": {
         "port": 443,
         "server_name": "elasticsearch.sugarpond.net",
