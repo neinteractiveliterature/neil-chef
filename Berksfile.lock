@@ -5,6 +5,7 @@ DEPENDENCIES
     revision: 22f4771dce7240f6fccfe4b8edd1b7c143ac88b8
   build-essential
   chef-client
+  docker
   elasticsearch
     git: git://github.com/nbudin/cookbook-elasticsearch.git
     revision: f19aa151c4cc161c20bb121969de91a735b8c0b4
@@ -21,6 +22,7 @@ DEPENDENCIES
   mysql-chef_gem
   networking_basic
   nginx
+  nodejs
   postfix
     git: git://github.com/nbudin/postfix.git
     revision: 51dff261c90c0c32523dc74b0dd1fab928d65ccb
@@ -48,12 +50,17 @@ DEPENDENCIES
     git: git://github.com/firstbanco/chef-unattended-upgrades.git
     revision: c0007662f54ce060e6297d5808cc563306180dfd
   user
+  vellum
+    path: vellum
   yum (~> 3.0)
   yum-epel (~> 0.3)
 
 GRAPH
   apt (2.4.0)
   ark (0.8.2)
+  aufs (0.1.1)
+    apt (>= 0.0.0)
+    modules (>= 0.0.0)
   aws (2.2.2)
   backupninja (0.0.1)
     known_host (>= 0.0.0)
@@ -72,7 +79,24 @@ GRAPH
     mysql-chef_gem (>= 0.0.0)
     postgresql (>= 1.0.0)
     xfs (>= 0.0.0)
+  device-mapper (0.1.0)
+    apt (>= 0.0.0)
+    modules (>= 0.0.0)
   dmg (2.2.0)
+  docker (0.35.2)
+    apt (>= 0.0.0)
+    aufs (>= 0.1.1)
+    device-mapper (>= 0.1.0)
+    git (>= 0.0.0)
+    golang (>= 0.0.0)
+    homebrew (>= 0.0.0)
+    iptables (>= 0.0.0)
+    lxc (>= 1.1.6)
+    modules (>= 0.0.0)
+    runit (>= 0.0.0)
+    sysctl (>= 0.0.0)
+    yum-epel (>= 0.0.0)
+  dpkg_autostart (0.1.12)
   elasticsearch (0.3.9)
     ark (>= 0.2.4)
     build-essential (>= 0.0.0)
@@ -87,19 +111,28 @@ GRAPH
     windows (>= 0.0.0)
     yum (~> 3.0)
     yum-epel (>= 0.0.0)
+  golang (1.4.0)
   gvapi (0.1.0)
     htpasswd (>= 0.0.0)
     sugarpond_php5 (>= 0.0.0)
+  homebrew (1.9.0)
   htpasswd (0.1.6)
     python (>= 0.0.0)
     ruby (>= 0.0.0)
   illyan (0.1.0)
     database (>= 0.0.0)
+  iptables (0.14.0)
+  iptables-ng (2.2.0)
   java (1.22.0)
   journey (0.1.0)
     database (>= 0.0.0)
   known_host (0.1.3)
   logrotate (1.5.0)
+  lxc (2.0.0)
+    dpkg_autostart (>= 0.1.10)
+    iptables-ng (>= 0.0.0)
+    polipo (>= 0.0.0)
+  modules (0.2.0)
   monit (0.7.1)
   mysql (5.2.12)
   mysql-chef_gem (0.0.2)
@@ -113,8 +146,14 @@ GRAPH
     ohai (~> 2.0)
     runit (~> 1.2)
     yum-epel (~> 0.3)
+  nodejs (2.1.0)
+    apt (>= 0.0.0)
+    ark (>= 0.0.0)
+    build-essential (>= 0.0.0)
+    yum-epel (>= 0.0.0)
   ohai (2.0.0)
   openssl (1.1.0)
+  polipo (0.1.0)
   postfix (2.1.4)
   postgresql (3.4.0)
     apt (>= 1.9.0)
@@ -148,11 +187,16 @@ GRAPH
   sugarpond_php5 (0.1.0)
   sugarpond_rubies (0.1.0)
     rbenv (>= 0.0.0)
+  sysctl (0.6.0)
+    ohai (>= 0.0.0)
   ufw (0.7.4)
     firewall (>= 0.9.0)
   unattended-upgrades (1.0.0)
     apt (>= 0.0.0)
   user (0.3.0)
+  vellum (0.1.0)
+    database (>= 0.0.0)
+    nodejs (>= 0.0.0)
   windows (1.31.0)
     chef_handler (>= 0.0.0)
   xfs (1.1.0)

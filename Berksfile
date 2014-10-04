@@ -15,6 +15,8 @@ cookbook 'ssl', ">= 1.0.8"
 cookbook 'sudo'
 cookbook 'user'
 cookbook 'ufw'
+cookbook 'nodejs'
+cookbook 'docker'
 
 # needed for nginx, somehow
 cookbook 'runit', "~> 1.2"
@@ -41,4 +43,5 @@ group :apps do
   cookbook 'illyan', path: "./illyan"
   cookbook 'journey', path: "./journey"
   cookbook 'gvapi', path: "./gvapi"
+  cookbook 'vellum', path: "./vellum"
 end
