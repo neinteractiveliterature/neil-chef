@@ -6,4 +6,6 @@ description      'Installs/Configures procon'
 long_description 'Installs/Configures procon'
 version          '0.1.0'
 
+depends "mysql-chef_gem"
+depends "database"
 depends "docker"

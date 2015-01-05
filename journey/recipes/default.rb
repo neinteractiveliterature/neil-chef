@@ -32,6 +32,10 @@ package "libmagickwand-dev" do
   action :install
 end
 
+package "imagemagick" do
+  action :install
+end
+
 app_name = "journey"
 app_path = "/var/www/#{app_name}"
 

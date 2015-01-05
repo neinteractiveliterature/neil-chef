@@ -8,7 +8,7 @@ DEPENDENCIES
   docker
   elasticsearch
     git: git://github.com/nbudin/cookbook-elasticsearch.git
-    revision: f19aa151c4cc161c20bb121969de91a735b8c0b4
+    revision: 016f429986ad0c9e061586a7eed0758f4b2e0163
   gvapi
     path: gvapi
   htpasswd
@@ -27,6 +27,8 @@ DEPENDENCIES
     git: git://github.com/nbudin/postfix.git
     revision: 51dff261c90c0c32523dc74b0dd1fab928d65ccb
   postgresql
+  procon
+    path: procon
   rbenv (>= 1.5.0)
   runit (~> 1.2)
   ssl (>= 1.0.8)
@@ -71,6 +73,7 @@ GRAPH
   chef-client (3.5.0)
     cron (>= 1.2.0)
     logrotate (>= 1.2.0)
+  chef-sugar (2.4.1)
   chef_handler (1.1.6)
   cron (1.4.0)
   database (2.2.0)
@@ -123,7 +126,7 @@ GRAPH
     database (>= 0.0.0)
   iptables (0.14.0)
   iptables-ng (2.2.0)
-  java (1.22.0)
+  java (1.29.0)
   journey (0.1.0)
     database (>= 0.0.0)
   known_host (0.1.3)
@@ -133,11 +136,10 @@ GRAPH
     iptables-ng (>= 0.0.0)
     polipo (>= 0.0.0)
   modules (0.2.0)
-  monit (0.7.1)
+  monit (0.7.5)
   mysql (5.2.12)
-  mysql-chef_gem (0.0.2)
+  mysql-chef_gem (1.0.0)
     build-essential (>= 0.0.0)
-    mysql (>= 0.0.0)
   networking_basic (0.0.7)
   nginx (2.7.2)
     apt (~> 2.2)
@@ -159,6 +161,10 @@ GRAPH
     apt (>= 1.9.0)
     build-essential (>= 0.0.0)
     openssl (>= 0.0.0)
+  procon (0.1.0)
+    database (>= 0.0.0)
+    docker (>= 0.0.0)
+    mysql-chef_gem (>= 0.0.0)
   python (1.4.6)
     build-essential (>= 0.0.0)
     yum-epel (>= 0.0.0)
@@ -200,8 +206,9 @@ GRAPH
   windows (1.31.0)
     chef_handler (>= 0.0.0)
   xfs (1.1.0)
-  xml (1.2.4)
+  xml (1.2.9)
     build-essential (>= 0.0.0)
+    chef-sugar (>= 0.0.0)
   yum (3.2.0)
   yum-epel (0.3.6)
     yum (~> 3.0)

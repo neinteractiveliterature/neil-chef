@@ -44,4 +44,5 @@ group :apps do
   cookbook 'journey', path: "./journey"
   cookbook 'gvapi', path: "./gvapi"
   cookbook 'vellum', path: "./vellum"
+  cookbook 'procon', path: "./procon"
 end

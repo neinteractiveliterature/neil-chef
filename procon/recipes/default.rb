@@ -12,7 +12,7 @@ include_recipe "docker"
 app_config = Chef::EncryptedDataBagItem.load("procon", "config")
 
 file "/etc/procon.env" do
-  content(app_config.reject {|k, v| k == "id"}.to_yaml)
+  content(app_config.to_hash.reject {|k, v| k == "id"}.map {|k, v| "#{k}=#{v}"}.join("\n"))
   owner "root"
   mode 0600
 end
@@ -24,7 +24,8 @@ end
 
 docker_image 'nbudin/procon'
 
-docker_container 'nbudin/procon' do
+docker_container 'procon' do
+  image 'nbudin/procon:v1'
   detach true
   port '5000:3000'
   env_file '/etc/procon.env'
