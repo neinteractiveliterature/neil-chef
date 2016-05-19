@@ -1,0 +1,7 @@
+name             'neil_email_forwarding'
+maintainer       'YOUR_NAME'
+maintainer_email 'YOUR_EMAIL'
+license          'All rights reserved'
+description      'Installs/Configures neil_email_forwarding'
+long_description 'Installs/Configures neil_email_forwarding'
+version          '0.1.0'

@@ -1,0 +1,31 @@
+{
+  "name": "sendgrid_email",
+  "description": "Postfix set up to forward all mail through Sendgrid",
+
+  "run_list": [
+    "role[basic]",
+    "recipe[postfix]",
+    "recipe[postfix::sasl_auth]",
+    "recipe[neil_email_forwarding]"
+  ],
+
+  "override_attributes": {
+    "firewall": {
+      "rules": [
+        { "smtp": { "port": 25 } }
+      ]
+    },
+    "postfix": {
+      "smtp_sasl_auth_enable": "yes",
+      "smtp_sasl_security_options": "noanonymous",
+      "smtp_sasl_password_maps": "static:vps1@interconlarp.org:iFYZcuqZBa49dF",
+      "smtp_tls_security_level": "encrypt",
+      "header_size_limit": "4096000",
+      "relayhost": "[smtp.sendgrid.com]:587",
+      "smtp_use_tls": "yes",
+      "virtual_alias_maps": "hash:/etc/postfix/virtual",
+      "inet_interfaces": "all",
+      "mydestination": "interactiveliterature.org, interconlarp.org, o.interconlarp.org, p.interconlarp.org, q.interconlarp.org, vps1.interconlarp.org, localhost, vps1"
+    }
+  }
+}

@@ -1,0 +1,5 @@
+<% @virtual_map.each do |domain, aliases| -%>
+<% aliases.each do |username, destination| -%>
+<%= username %>@<%= domain %> <%= destination %>
+<% end -%>
+<% end -%>

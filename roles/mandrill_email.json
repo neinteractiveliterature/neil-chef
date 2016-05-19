@@ -1,0 +1,21 @@
+{
+  "name": "mandrill_email",
+  "description": "Postfix server relaying all outbound mail through Mandrill",
+
+  "run_list": [
+    "role[basic]",
+    "recipe[postfix]",
+    "recipe[postfix::sasl_auth]"
+  ],
+
+  "override_attributes": {
+    "postfix": {
+      "smtp_sasl_auth_enable": "yes",
+      "smtp_sasl_security_options": "noanonymous",
+      "smtp_sasl_user_name": "natbudin@gmail.com",
+      "smtp_tls_cafile": "",
+      "relayhost": "[smtp.mandrillapp.com]:587",
+      "smtp_use_tls": "yes"
+    }
+  }
+}

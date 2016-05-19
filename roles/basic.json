@@ -1,15 +1,15 @@
 {
-  "name": "debian",
-  "description": "Basic debianish server setup",
+  "name": "basic",
+  "description": "Basic NEIL server setup",
 
   "run_list": [
     "recipe[apt]",
     "recipe[build-essential]",
     "recipe[networking_basic]",
+    "recipe[hostname]",
+    "recipe[git]",
     "recipe[backupninja]",
-    "recipe[sugarpond_backups]",
     "recipe[unattended-upgrades]",
-    "recipe[ssl]",
     "recipe[sudo]",
     "recipe[ufw]",
     "recipe[user::data_bag]"
@@ -26,9 +26,6 @@
         ]
       }
     },
-    "duplicity": {
-      "s3_bucket": "nbudin"
-    }, 
     "backupninja": {
       "reportemail": "natbudin@gmail.com"
     }, 
@@ -42,6 +39,8 @@
           "ssh": { "port": 22 }
         }
       ]
-    }
+    },
+    "set_fqdn": "*.interconlarp.org",
+    "users": ["www-data", "deploy", "git", "nbudin", "tlasko", "jdiewald", "btannenbaum"]
   }
 }

@@ -1,50 +1,38 @@
 {
   "name": "app_server",
-  "description": "App server with nginx and passenger",
+  "description": "App server with nginx and PHP",
 
   "run_list": [
-    "role[debian]",
-    "recipe[rbenv]",
-    "recipe[rbenv::ruby_build]",
-    "recipe[sugarpond_rubies]",
+    "role[basic]",
     "recipe[nginx]",
     "recipe[mysql::client]",
-    "recipe[mysql-chef_gem]",
-    "recipe[postgresql]",
-    "recipe[postfix]",
-    "recipe[postfix::sasl_auth]",
-    "recipe[sugarpond_logrotate]"
+    "recipe[sugarpond_logrotate]",
+    "recipe[php-fpm]"
   ],
 
   "override_attributes": {
     "nginx": {
-      "version": "1.4.7",
-      "install_method": "source",
-      "gzip": "on",
+      "version": "1.6.2",
       "init_style": "upstart",
       "source": {
-        "modules": ["nginx::ipv6", "nginx::http_ssl_module", "nginx::http_spdy_module", "nginx::passenger"]
-      },
-      "passenger": {
-        "version": "4.0.43",
-        "ruby": "/opt/rbenv/versions/2.1.2/bin/ruby",
-        "root": "/opt/rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/passenger-4.0.43"
+        "modules": ["nginx::ipv6"]
       }
-    }, 
-    "postfix": {
-      "smtp_sasl_auth_enable": "yes",
-      "smtp_sasl_security_options": "noanonymous",
-      "smtp_sasl_user_name": "natbudin@gmail.com",
-      "smtp_tls_cafile": "",
-      "relayhost": "[smtp.mandrillapp.com]:587",
-      "smtp_use_tls": "yes"
     },
-    "users": ["www-data", "deploy", "nbudin"],
     "firewall": {
       "rules": [
         { "http": { "port": 80 } },
         { "https": { "port": 443 } }
       ]
+    },
+    "php-fpm": {
+      "pools": {
+        "default": {
+          "enable": true,
+          "php_options": {
+            "php_value[session.gc_maxlifetime]": "7200"
+          }
+        }
+      }
     }
   }
 }
